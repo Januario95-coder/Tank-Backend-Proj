@@ -75,8 +75,15 @@ WSGI_APPLICATION = 'tanks.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dasjf5nt30tgfe',
+        'USER': 'iatchafwyankdk',
+        'PASSWORD': 'da82bb58b23282efaf65fca232dd9f4bff66cbe740c1034d4b0e1898b6e4565c',
+        'HOST': 'ec2-54-205-183-19.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
