@@ -147,4 +147,6 @@ STATICFILES_DIRS = (
     BASE_DIR.joinpath('build', 'static'),  # new
 )
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 django_heroku.settings(locals())
