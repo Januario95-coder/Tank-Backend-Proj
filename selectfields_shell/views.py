@@ -8,6 +8,13 @@ from .serializers import (
     ProductCorrosivitySerializer,
     VaporCorrosivitySerializer,
     TankShellHasBeenInsulatedSerializer,
+    TimeToRepairSerializer,
+    CostOfRepairSerializer,
+    ProbableMagnitudeOfProductLossSerializer,
+    LikelihoodOfInjuryToPersonnelSerializer,
+    ProductFlammabilityAsPerMCSPSerializer,
+    ProductToxicitySerializer,
+    LocationOfTankFarmSerializer
 )
 
 
@@ -19,6 +26,13 @@ from .models import (
     ProductCorrosivity,
     VaporCorrosivity,
     TankShellHasBeenInsulated,
+    TimeToRepair,
+    CostOfRepair,
+    ProbableMagnitudeOfProductLoss,
+    LikelihoodOfInjuryToPersonnel,
+    ProductFlammabilityAsPerMCSP,
+    ProductToxicity,
+    LocationOfTankFarm
 )
 
 
@@ -58,8 +72,39 @@ class TankShellHasBeenInsulatedView(ModelViewSet):
     serializer_class = TankShellHasBeenInsulatedSerializer
     queryset = TankShellHasBeenInsulated.objects.all()
     
+
+class TimeToRepairView(ModelViewSet):  
+    serializer_class = TimeToRepairSerializer
+    queryset = TimeToRepair.objects.all()    
+
+
+class CostOfRepairView(ModelViewSet):  
+    serializer_class = CostOfRepairSerializer
+    queryset = CostOfRepair.objects.all()
+
+class ProbableMagnitudeOfProductLossView(ModelViewSet):  
+    serializer_class = ProbableMagnitudeOfProductLossSerializer
+    queryset = ProbableMagnitudeOfProductLoss.objects.all()
     
     
+class LikelihoodOfInjuryToPersonnelView(ModelViewSet):  
+    serializer_class = LikelihoodOfInjuryToPersonnelSerializer
+    queryset = LikelihoodOfInjuryToPersonnel.objects.all()
+    
+
+class ProductFlammabilityAsPerMCSPView(ModelViewSet):  
+    serializer_class = ProductFlammabilityAsPerMCSPSerializer
+    queryset = ProductFlammabilityAsPerMCSP.objects.all()
+    
+
+class ProductToxicityView(ModelViewSet):  
+    serializer_class = ProductToxicitySerializer
+    queryset = ProductToxicity.objects.all()
+
+    
+class LocationOfTankFarmView(ModelViewSet):  
+    serializer_class = LocationOfTankFarmSerializer
+    queryset = LocationOfTankFarm.objects.all()
     
     
     
@@ -95,25 +140,7 @@ class TankShellHasBeenInsulatedView(ModelViewSet):
     # queryset = ProbableMagnitudeOfProductLoss.objects.all()
     
     
-# class LikelihoodOfInjuryToPersonnelView(ModelViewSet):  
-    # serializer_class = LikelihoodOfInjuryToPersonnelSerializer
-    # queryset = LikelihoodOfInjuryToPersonnel.objects.all()
-    
 
-
-# class ProductFlammabilityAsPerMCSPView(ModelViewSet):  
-    # serializer_class = ProductFlammabilityAsPerMCSPSerializer
-    # queryset = ProductFlammabilityAsPerMCSP.objects.all()
-    
-
-# class ProductToxicityView(ModelViewSet):  
-    # serializer_class = ProductToxicitySerializer
-    # queryset = ProductToxicity.objects.all()
-
-    
-# class LocationOfTankFarmView(ModelViewSet):  
-    # serializer_class = LocationOfTankFarmSerializer
-    # queryset = LocationOfTankFarm.objects.all()
     
     
 # class EnvironmetalHazardToSoilAndWaterView(ModelViewSet):  

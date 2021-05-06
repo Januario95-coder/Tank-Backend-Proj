@@ -63,9 +63,9 @@ class ConsequenceFactorData(models.Model):
     location_of_tank_farm = models.CharField(max_length=100,
             choices=LOCATION_OF_TANK_FARM,
             verbose_name='9d: Location of tank farm')
-    continued_location_of_tank_farm = models.CharField(max_length=100,
-            choices=CONTINUED_LOCATION_OF_TANK_FARM,
-            verbose_name='9d-cont\'d: Location of tank farm')
+    # continued_location_of_tank_farm = models.CharField(max_length=100,
+            # choices=CONTINUED_LOCATION_OF_TANK_FARM,
+            # verbose_name='9d-cont\'d: Location of tank farm')
         
             
 

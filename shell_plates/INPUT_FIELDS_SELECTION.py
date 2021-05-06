@@ -18,7 +18,7 @@ DEGREE_SIGN = u'\N{DEGREE SIGN}'
 STORAGE_CONDITIONS = [
     (f'Temperature of product < 40{DEGREE_SIGN}C - score=0', f'Temperature of product < 40{DEGREE_SIGN}C'),
     (f'40{DEGREE_SIGN}C Temperature of product < 85{DEGREE_SIGN}C - score=1', f'40{DEGREE_SIGN}C Temperature of product < 85{DEGREE_SIGN}C'),
-    ('Temperature of product > 85{DEGREE_SIGN}C - score=2', f'Temperature of product > 85{DEGREE_SIGN}C')
+    (f'Temperature of product > 85{DEGREE_SIGN}C - score=2', f'Temperature of product > 85{DEGREE_SIGN}C')
 ]
 HEATING_COILS_IN_TANK = [
     ('No heating coil or no contact between heating coil and shell plates - score=0', 'No heating coil or no contact between heating coil and shell plates'),
@@ -57,48 +57,48 @@ CORROSION_UNDER_INSULATION_CUI = [
 
 
 TIME_TO_REPAIR = [
-    ('No internal entry required, limited repair, no limitation on repair time', 'No internal entry required, limited repair, no limitation on repair time'),
-    ('Internal entry required, limited repair (<3 months)', 'Internal entry required, limited repair (<3 months)'),
-    ('Internal entry required, major repair (3-8 months)', 'Internal entry required, major repair (3-8 months)'),
-    ('Internal entry required, major repair (>8 months)', 'Internal entry required, major repair (>8 months)')
+    ('No internal entry required, limited repair - score=1, no limitation on repair time', 'No internal entry required, limited repair, no limitation on repair time'),
+    ('Internal entry required, limited repair (<3 months) - score=2', 'Internal entry required, limited repair (<3 months)'),
+    ('Internal entry required, major repair (3-8 months - score=3)', 'Internal entry required, major repair (3-8 months)'),
+    ('Internal entry required, major repair (>8 months) - score=4', 'Internal entry required, major repair (>8 months)')
 ]
 COST_OF_REPAIR = [
-    ('Negligible or less than 5% of capital cost', 'Negligible or less than 5% of capital cost'),
-    ('5-10% of capital cost', '5-10% of capital cost'),
-    ('10-50% of capital cost', '10-50% of capital cost'),
-    ('>50% of capital cost (new tank)', '>50% of capital cost (new tank)')
+    ('Negligible or less than 5% of capital cost - score=1', 'Negligible or less than 5% of capital cost'),
+    ('5-10% of capital cost - score=2', '5-10% of capital cost'),
+    ('10-50% of capital cost - score=3', '10-50% of capital cost'),
+    ('>50% of capital cost (new tank) - score=4', '>50% of capital cost (new tank)')
 ]
 PROBABLE_MAGNITUDE_OF_PRODUCT_LOSS = [
-    ('No release of product', 'No release of product'),
-    ('<5% of tank contents', '<5% of tank contents'),
-    ('>5% of tank contents', '>5% of tank contents')
+    ('No release of product - score=1', 'No release of product'),
+    ('<5% of tank contents - score=2', '<5% of tank contents'),
+    ('>5% of tank contents - score=3', '>5% of tank contents')
 ]
 
 
 
 LIKELIHOOD_OF_INJURY_TO_PERSONNEL = [
-    ('No injury or near miss', 'No injury or near miss'),
-    ('Minor injury', 'Minor injury'),
-    ('Lost time injury/Medical treatment', 'Lost time injury/Medical treatment'),
-    ('Serious injury/fatality on site', 'Serious injury/fatality on site')
+    ('No injury or near miss - score=1', 'No injury or near miss'),
+    ('Minor injury - score=2', 'Minor injury'),
+    ('Lost time injury/Medical treatment - score=3', 'Lost time injury/Medical treatment'),
+    ('Serious injury/fatality on site - score=4', 'Serious injury/fatality on site')
 ]
 PRODUCT_FLAMMABILITY_AS_PER_MCSP = [
-    ('Class III(1) and unclassified product', 'Class III(1) and unclassified product'),
-    ('Class II(1) product', 'Class II(1) product'),
-    ('Class II(2) and III(2) product', 'Class II(2) and III(2) product'),
-    ('Class I product', 'Class I product'),
+    ('Class III(1) and unclassified product - score=1', 'Class III(1) and unclassified product'),
+    ('Class II(1) product - score=2', 'Class II(1) product'),
+    ('Class II(2) and III(2) product - score=3', 'Class II(2) and III(2) product'),
+    ('Class I product - score=4', 'Class I product'),
 ]
 PRODUCT_TOXICITY = [
-    ('Non-toxic substances', 'Non-toxic substances'),
-    ('Toxic substance if in contact with other substances', 'Toxic substance if in contact with other substances'),
-    ('Toxic substance', 'Toxic substance'),
-    ('Extremely toxic substance', 'Extremely toxic substance')
+    ('Non-toxic substances - score=1', 'Non-toxic substances'),
+    ('Toxic substance if in contact with other substances - score=2', 'Toxic substance if in contact with other substances'),
+    ('Toxic substance - score=3', 'Toxic substance'),
+    ('Extremely toxic substance - score=4', 'Extremely toxic substance')
 ]
 LOCATION_OF_TANK_FARM = [
-    ('Tank farm within an abandonned area', 'Tank farm within an abandonned area'),
-    ('Flat tank farm', 'Flat tank farm'),
-    ('Flopping tank farm', 'Flopping tank farm'),
-    ('In plant area within populous area', 'In plant area within populous area')
+    ('Tank farm within an abandonned area - score=1', 'Tank farm within an abandonned area'),
+    ('Flat tank farm - score=2', 'Flat tank farm'),
+    ('Flopping tank farm - score=3', 'Flopping tank farm'),
+    ('In plant area within populous area - score=4', 'In plant area within populous area')
 ]
 CONTINUED_LOCATION_OF_TANK_FARM = [
     ('No public fence near tank farm', 'No public fence near tank farm'),

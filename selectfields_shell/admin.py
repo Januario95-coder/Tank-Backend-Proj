@@ -8,6 +8,13 @@ from .models import (
     ProductCorrosivity,
     VaporCorrosivity,
     TankShellHasBeenInsulated,
+    TimeToRepair,
+    CostOfRepair,
+    ProbableMagnitudeOfProductLoss,
+    LikelihoodOfInjuryToPersonnel,
+    ProductFlammabilityAsPerMCSP,
+    ProductToxicity,
+    LocationOfTankFarm
 )
 
 
@@ -47,9 +54,40 @@ class TankShellHasBeenInsulatedAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
     
   
+@admin.register(TimeToRepair)
+class TimeToRepairAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    
+    
+@admin.register(CostOfRepair)
+class CostOfRepairAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    
+    
+@admin.register(ProbableMagnitudeOfProductLoss)
+class ProbableMagnitudeOfProductLossAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
 
 
-
+@admin.register(LikelihoodOfInjuryToPersonnel)
+class LikelihoodOfInjuryToPersonnelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    
+    
+@admin.register(ProductFlammabilityAsPerMCSP)
+class ProductFlammabilityAsPerMCSPAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    
+    
+@admin.register(ProductToxicity)
+class ProductToxicityAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    
+    
+@admin.register(LocationOfTankFarm)
+class LocationOfTankFarmAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    
 
 
 
@@ -81,39 +119,10 @@ class TankShellHasBeenInsulatedAdmin(admin.ModelAdmin):
     # list_display = ['id', 'name']
     
     
-# @admin.register(TimeToRepair)
-# class TimeToRepairAdmin(admin.ModelAdmin):
-    # list_display = ['id', 'name']
+
     
     
-# @admin.register(CostOfRepair)
-# class CostOfRepairAdmin(admin.ModelAdmin):
-    # list_display = ['id', 'name']
-    
-    
-# @admin.register(ProbableMagnitudeOfProductLoss)
-# class ProbableMagnitudeOfProductLossAdmin(admin.ModelAdmin):
-    # list_display = ['id', 'name']
-    
-    
-# @admin.register(LikelihoodOfInjuryToPersonnel)
-# class LikelihoodOfInjuryToPersonnelAdmin(admin.ModelAdmin):
-    # list_display = ['id', 'name']
-    
-    
-# @admin.register(ProductFlammabilityAsPerMCSP)
-# class ProductFlammabilityAsPerMCSPAdmin(admin.ModelAdmin):
-    # list_display = ['id', 'name']
-    
-    
-# @admin.register(ProductToxicity)
-# class ProductToxicityAdmin(admin.ModelAdmin):
-    # list_display = ['id', 'name']
-    
-    
-# @admin.register(LocationOfTankFarm)
-# class LocationOfTankFarmAdmin(admin.ModelAdmin):
-    # list_display = ['id', 'name']
+
     
     
 # @admin.register(EnvironmetalHazardToSoilAndWater)

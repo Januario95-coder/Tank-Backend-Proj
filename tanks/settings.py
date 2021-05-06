@@ -1,4 +1,5 @@
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,14 +26,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Internal apps 
+
+    # Internal apps
     'bottom_plates.apps.BottomPlatesConfig',
     'shell_plates.apps.ShellPlatesConfig',
     'projects.apps.ProjectsConfig',
     'selectfields.apps.SelectfieldsConfig',
     'selectfields_shell.apps.SelectfieldsShellConfig',
-    
+
     # Third-party
     'rest_framework',
     'corsheaders',
@@ -75,15 +76,15 @@ WSGI_APPLICATION = 'tanks.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dasjf5nt30tgfe',
-        'USER': 'iatchafwyankdk',
-        'PASSWORD': 'da82bb58b23282efaf65fca232dd9f4bff66cbe740c1034d4b0e1898b6e4565c',
-        'HOST': 'ec2-54-205-183-19.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'dasjf5nt30tgfe',
+        # 'USER': 'iatchafwyankdk',
+        # 'PASSWORD': 'da82bb58b23282efaf65fca232dd9f4bff66cbe740c1034d4b0e1898b6e4565c',
+        # 'HOST': 'ec2-54-205-183-19.compute-1.amazonaws.com',
+        # 'PORT': '5432'
     }
 }
 
@@ -130,7 +131,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
     'http://localhost:3000',
-    'http://127.0.0.1:3000'
+    'http://127.0.0.1:3000',
+    'https://rbui-tank.netlify.app'
 ]
 
 CSRF_COOKIE_SAMESITE = 'Lax'
@@ -144,3 +146,5 @@ CORS_ALLOW_CREDENTIALS = True
 STATICFILES_DIRS = (
     BASE_DIR.joinpath('build', 'static'),  # new
 )
+
+django_heroku.settings(locals())

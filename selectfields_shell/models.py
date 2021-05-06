@@ -1,6 +1,5 @@
 from django.db import models
 
-from bottom_plates.INPUT_FIELDS_SELECTION import *
 from shell_plates.INPUT_FIELDS_SELECTION import *
 
 
@@ -88,8 +87,161 @@ class TankShellHasBeenInsulated(models.Model):
     
     
         
+class TimeToRepair(models.Model):
+    name = models.CharField(max_length=100,
+            choices=TIME_TO_REPAIR,
+            default='No internal entry required, limited repair - score=4',
+            verbose_name='Time to repair'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Time To Repair'
+        verbose_name_plural = 'Time To Repair'
+    
+    
+    
+class CostOfRepair(models.Model):
+    name = models.CharField(max_length=100,
+            choices=COST_OF_REPAIR,
+            default='Negligible or less than 5% of capital cost - score=1',
+            verbose_name='Cost of repair'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Cost Of Repair'
+        verbose_name_plural = 'Cost Of Repair'
+    
+    
+    
+class ProbableMagnitudeOfProductLoss(models.Model):
+    name = models.CharField(max_length=100,
+            choices=PROBABLE_MAGNITUDE_OF_PRODUCT_LOSS,
+            default='No release of product - score=1',
+            verbose_name='Probable magnitude of product loss'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Probable Magnitude Of ProductLoss'
+        verbose_name_plural = 'Probable Magnitude Of Product Loss'
+        
+
+class LikelihoodOfInjuryToPersonnel(models.Model):
+    name = models.CharField(max_length=100,
+            choices=LIKELIHOOD_OF_INJURY_TO_PERSONNEL,
+            default='No injury or near miss - Score=1',
+            verbose_name='12a: Likelihood of injury to personnel'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Likelihood Of Injury To Personnel'
+        verbose_name_plural = 'Likelihood Of Injury To Personnel'
+    
+    
+class ProductFlammabilityAsPerMCSP(models.Model):
+    name = models.CharField(max_length=100,
+            choices=PRODUCT_FLAMMABILITY_AS_PER_MCSP,
+            default='Class III(1) and unclassified product - Score=1',
+            verbose_name='12b: Product flammability as per MCSP'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Product Flammability As Per MCSP'
+        verbose_name_plural = 'Product Flammability As Per MCSP'
         
         
+
+class ProductToxicity(models.Model):
+    name = models.CharField(max_length=100,
+            choices=PRODUCT_TOXICITY,
+            default='Non-toxic substances- Score=1',
+            verbose_name='12c: Product toxicity'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Product Toxicity'
+        verbose_name_plural = 'Product Toxicity'
+        
+
+class LikelihoodOfInjuryToPersonnel(models.Model):
+    name = models.CharField(max_length=100,
+            choices=LIKELIHOOD_OF_INJURY_TO_PERSONNEL,
+            default='No injury or near miss - Score=1',
+            verbose_name='12a: Likelihood of injury to personnel'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Likelihood Of Injury To Personnel'
+        verbose_name_plural = 'Likelihood Of Injury To Personnel'
+    
+    
+
+class ProductFlammabilityAsPerMCSP(models.Model):
+    name = models.CharField(max_length=100,
+            choices=PRODUCT_FLAMMABILITY_AS_PER_MCSP,
+            default='Class III(1) and unclassified product - Score=1',
+            verbose_name='12b: Product flammability as per MCSP'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Product Flammability As Per MCSP'
+        verbose_name_plural = 'Product Flammability As Per MCSP'
+        
+        
+class ProductToxicity(models.Model):
+    name = models.CharField(max_length=100,
+            choices=PRODUCT_TOXICITY,
+            default='Non-toxic substances- Score=1',
+            verbose_name='12c: Product toxicity'
+    )
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Product Toxicity'
+        verbose_name_plural = 'Product Toxicity'
+        
+        
+class LocationOfTankFarm(models.Model):
+    name = models.CharField(max_length=100,
+            choices=LOCATION_OF_TANK_FARM,
+            default='Tank farm within an abandonned area - Score=1',
+            verbose_name='12d: Location of tank farm')
+            
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Location Of Tank Farm'
+        verbose_name_plural = 'Location Of Tank Farm'
+        
+        
+
+    
         
 
 # class FoundationType(models.Model):
@@ -137,115 +289,19 @@ class TankShellHasBeenInsulated(models.Model):
         
         
 
-# class TimeToRepair(models.Model):
-    # name = models.CharField(max_length=100,
-            # choices=TIME_TO_REPAIR,
-            # default='No internal entry required limited repair, no limitation on repair time - Score=1',
-            # verbose_name='10a: Time to repair'
-    # )
-    
-    # def __str__(self):
-        # return self.name
-    
-    # class Meta:
-        # verbose_name = 'Time To Repair'
-        # verbose_name_plural = 'Time To Repair'
-    
-    
-    
-# class CostOfRepair(models.Model):
-    # name = models.CharField(max_length=100,
-            # choices=COST_OF_REPAIR,
-            # default='Negligible or less than 5% of capital cost - Score=1',
-            # verbose_name='10b: Cost of repair'
-    # )
-    
-    # def __str__(self):
-        # return self.name
-    
-    # class Meta:
-        # verbose_name = 'Cost Of Repair'
-        # verbose_name_plural = 'Cost Of Repair'
-    
-    
-    
-# class ProbableMagnitudeOfProductLoss(models.Model):
-    # name = models.CharField(max_length=100,
-            # choices=PROBABLE_MAGNITUDE_OF_PRODUCT_LOSS,
-            # default='No release of product - Score=1',
-            # verbose_name='10c: Probable magnitude of product loss'
-    # )
-    
-    # def __str__(self):
-        # return self.name
-    
-    # class Meta:
-        # verbose_name = 'Probable Magnitude Of ProductLoss'
-        # verbose_name_plural = 'Probable Magnitude Of Product Loss'
-        
-        
 
-# class LikelihoodOfInjuryToPersonnel(models.Model):
-    # name = models.CharField(max_length=100,
-            # choices=LIKELIHOOD_OF_INJURY_TO_PERSONNEL,
-            # default='No injury or near miss - Score=1',
-            # verbose_name='12a: Likelihood of injury to personnel'
-    # )
-    
-    # def __str__(self):
-        # return self.name
-    
-    # class Meta:
-        # verbose_name = 'Likelihood Of Injury To Personnel'
-        # verbose_name_plural = 'Likelihood Of Injury To Personnel'
-    
     
 
-# class ProductFlammabilityAsPerMCSP(models.Model):
-    # name = models.CharField(max_length=100,
-            # choices=PRODUCT_FLAMMABILITY_AS_PER_MCSP,
-            # default='Class III(1) and unclassified product - Score=1',
-            # verbose_name='12b: Product flammability as per MCSP'
-    # )
-    
-    # def __str__(self):
-        # return self.name
-    
-    # class Meta:
-        # verbose_name = 'Product Flammability As Per MCSP'
-        # verbose_name_plural = 'Product Flammability As Per MCSP'
+
     
     
     
 
-# class ProductToxicity(models.Model):
-    # name = models.CharField(max_length=100,
-            # choices=PRODUCT_TOXICITY,
-            # default='Non-toxic substances- Score=1',
-            # verbose_name='12c: Product toxicity'
-    # )
-    
-    # def __str__(self):
-        # return self.name
-    
-    # class Meta:
-        # verbose_name = 'Product Toxicity'
-        # verbose_name_plural = 'Product Toxicity'
+
     
     
     
-# class LocationOfTankFarm(models.Model):
-    # name = models.CharField(max_length=100,
-            # choices=LOCATION_OF_TANK_FARM,
-            # default='Tank farm within an abandonned area - Score=1',
-            # verbose_name='12d: Location of tank farm')
-            
-    # def __str__(self):
-        # return self.name
-    
-    # class Meta:
-        # verbose_name = 'Location Of Tank Farm'
-        # verbose_name_plural = 'Location Of Tank Farm'
+
         
         
 

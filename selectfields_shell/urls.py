@@ -9,6 +9,13 @@ from .views import (
     ProductCorrosivityView,
     VaporCorrosivityView,
     TankShellHasBeenInsulatedView,
+    TimeToRepairView,
+    CostOfRepairView,
+    ProbableMagnitudeOfProductLossView,
+    LikelihoodOfInjuryToPersonnelView,
+    ProductFlammabilityAsPerMCSPView,
+    ProductToxicityView,
+    LocationOfTankFarmView
 )
 
 
@@ -16,11 +23,17 @@ router = DefaultRouter()
 router.register('impress-cathodic', impressedCoatingAppliedToSheelPlatesView, basename='impressedCoatingAppliedToSheelPlates')
 router.register('sacrificial-cathodic', ExternalCoatingAppliedToShellPlatesView, basename='ExternalCoatingAppliedToShellPlates')
 router.register('storage-conditions', StorageConditionsView, basename='StorageConditions')
-router.register('internal-coating', HeatedCoilsInTankView, basename='HeatedCoilsInTank')
-router.register('external-coating', ProductCorrosivityView, basename='ProductCorrosivity')
-router.register('type-of-bottom', VaporCorrosivityView, basename='VaporCorrosivity')
-router.register('heating-coils', TankShellHasBeenInsulatedView, basename='TankShellHasBeenInsulated')
-
+router.register('heating-coils', HeatedCoilsInTankView, basename='HeatedCoilsInTank')
+router.register('product-corrosivity', ProductCorrosivityView, basename='ProductCorrosivity')
+router.register('vapous-corrosivity', VaporCorrosivityView, basename='VaporCorrosivity')
+router.register('tank-shell-insulateds', TankShellHasBeenInsulatedView, basename='TankShellHasBeenInsulated')
+router.register('time-to-repair', TimeToRepairView, basename='TimeToRepair')
+router.register('cost-of-repair', CostOfRepairView, basename='CostOfRepair')
+router.register('problable-magnitude', ProbableMagnitudeOfProductLossView, basename='ProbableMagnitudeOfProductLoss')
+router.register('likelihood-of-injury', LikelihoodOfInjuryToPersonnelView, basename='LikelihoodOfInjuryToPersonnel')
+router.register('product-flamability', ProductFlammabilityAsPerMCSPView, basename='ProductFlammabilityAsPerMCSP')
+router.register('product-toxicity', ProductToxicityView, basename='ProductToxicity')
+router.register('location-of-tank', LocationOfTankFarmView, basename='LocationOfTankFarm')
 
 
 urlpatterns = [
