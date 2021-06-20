@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from bottom_plates.models import (
     ProbabilityFactorData, ConsequenceFactorData,
-    InspectionData, Results 
+    InspectionData, Results
 )
 from selectfields.serializers import (
     ImpressCathodicProtectionSerializer,
@@ -28,7 +28,7 @@ from selectfields.serializers import (
     AccelerationFactorForPittingSerializer,
     NDTMethodUsedForThicknessMeasurementsSerializer,
     FrequencyOfInternalInspectionsSerializer,
-    TypeOfInterconnectingBottomPlateWeldsSerializer,
+    IsTheConstructionSuchThatCorrosionMayBeReducedByTheChosenWeldConfiguration,
 )
 
 
@@ -45,7 +45,7 @@ class ProbabilityFactorDataSerializer(serializers.ModelSerializer):
     foundation_types = FoundationTypeSerializer()
     heights_of_foundation = HeightOfFoundationSerializer()
     effectiveness_of_drainages = EffectivenessOfDrainageSerializer()
-    
+
     class Meta:
         model = ProbabilityFactorData
         fields = ['id', 'impresses_cathodic_protect',
@@ -56,13 +56,13 @@ class ProbabilityFactorDataSerializer(serializers.ModelSerializer):
                   'heating_coils_in_tanks', 'products_corrosivity',
                   'foundation_types', 'heights_of_foundation',
                   'effectiveness_of_drainages']
-        
+
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['score_five'] = instance.five_score
+        # data['score_five'] = instance.five_score
         return data
-        
-        
+
+
 
 class ConsequenceFactorDataSerializer(serializers.ModelSerializer):
     time_to_repair = TimeToRepairSerializer()
@@ -74,11 +74,11 @@ class ConsequenceFactorDataSerializer(serializers.ModelSerializer):
     location_of_tank_farm = LocationOfTankFarmSerializer()
     environmetal_hazard_to_soil_and_water_as_the_potential_to_cause = EnvironmetalHazardToSoilAndWaterSerializer()
     vapour_emission = VapourEmissionSerializer()
-    
+
     class Meta:
         model = ConsequenceFactorData
-        fields = ['id', 'time_to_repair', 
-                  'cost_of_repair', 
+        fields = ['id', 'time_to_repair',
+                  'cost_of_repair',
                   'probable_magnitude_of_product_loss',
                   'likelihood_of_injury_to_personnel',
                   'product_flammability_as_per_MCSP',
@@ -86,16 +86,16 @@ class ConsequenceFactorDataSerializer(serializers.ModelSerializer):
                   'environmetal_hazard_to_soil_and_water_as_the_potential_to_cause',
                   'vapour_emission']
         # depth = 1
-        
+
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['ten_D_score'] = instance.ten_D_score
-        data['twelve_E_score'] = instance.twelve_E
-        data['fourteen_C_score'] = instance.fourteen_C
+        # data['ten_D_score'] = instance.ten_D_score
+        # data['twelve_E_score'] = instance.twelve_E
+        # data['fourteen_C_score'] = instance.fourteen_C
         return data
-        
-      
-      
+
+
+
 class InspectionDataSerializer(serializers.ModelSerializer):
     last_inspection = serializers.DateField()
     minimum_thickness_measured_during_previous_inspection = serializers.CharField(max_length=100)
@@ -105,21 +105,21 @@ class InspectionDataSerializer(serializers.ModelSerializer):
     acceleration_factor_for_pitting = AccelerationFactorForPittingSerializer()
     NDT_method_used_for_thickness_measurements = NDTMethodUsedForThicknessMeasurementsSerializer()
     frequency_of_internal_inspections_performed_during_service_life = FrequencyOfInternalInspectionsSerializer()
-    type_of_interconnecting_bottom_plate_welds_outside_of_annular_section = TypeOfInterconnectingBottomPlateWeldsSerializer()
-    
+    type_of_interconnecting_bottom_plate_welds_outside_of_annular_section = IsTheConstructionSuchThatCorrosionMayBeReducedByTheChosenWeldConfiguration()
+
     class Meta:
         model = InspectionData
         fields = '__all__'
         depth = 1
-        
+
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['twenty_2_score'] = instance.twenty_2
+        # data['twenty_2_score'] = instance.twenty_2
         return data
-        
-        
-        
-        
+
+
+
+
 class ResultsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Results

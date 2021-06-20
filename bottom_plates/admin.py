@@ -4,7 +4,7 @@ from .models import (
     ProbabilityFactorData,
     ConsequenceFactorData,
     InspectionData,
-    Results, 
+    Results,
 )
 
 
@@ -14,12 +14,12 @@ class ProbabilityFactorDataAdmin(admin.ModelAdmin):
                     'sacrificial_cathodic_propect',
                     'bottom_plates_internal_coating_or_linin',
                     'bottom_plates_external_coatin',
-                    
+
                     'storage_condition',
                     'types_of_bottom',
                     'heating_coils_in_tanks',
-                    'products_corrosivity', 
-                    
+                    'products_corrosivity',
+
                     'foundation_types',
                     'heights_of_foundation',
                     'effectiveness_of_drainages']
@@ -29,18 +29,18 @@ class ProbabilityFactorDataAdmin(admin.ModelAdmin):
 
 @admin.register(ConsequenceFactorData)
 class ConsequenceFactorDataAdmin(admin.ModelAdmin):
-    list_display = ['id', 'time_to_repair', 'cost_of_repair', 
+    list_display = ['id', 'cost_of_repair', 'time_to_repair',
                    'probable_magnitude_of_product_loss',
-                   
+
                    'likelihood_of_injury_to_personnel',
                    'product_flammability_as_per_MCSP',
                    'product_toxicity',
                    'location_of_tank_farm',
-                   
+
                    'environmetal_hazard_to_soil_and_water_as_the_potential_to_cause',
                    'vapour_emission']
     list_per_page = 12
-                   
+
 
 
 @admin.register(InspectionData)
@@ -51,19 +51,19 @@ class InspectionDataAdmin(admin.ModelAdmin):
                    'minimum_thickness_measured_during_present_inspection',
                    'minimum_allowable_bottom_place_thickness',
                    'acceleration_factor_for_pitting',
-                   
+
                    'NDT_method_used_for_thickness_measurements',
                    'frequency_of_internal_inspections_performed_during_service_life',
-                   'type_of_interconnecting_bottom_plate_welds_outside_of_annular_section']
+                   'Is_the_Construction_such_that_Corrosion_may_be_Reduced_by_the_Chosen_Weld_Configuration']
     list_per_page = 12
-                   
-                   
-                   
-                   
+
+
+
+
 @admin.register(Results)
 class ResultsAdmin(admin.ModelAdmin):
     list_display = ['id', 'probability_factor',
-                   'probability_rating', 
+                   'probability_rating',
                    'economic_aspects_consequence_factor',
                    'economic_aspects_consequence_rating',
                    'health_and_safety_aspects_consequence_factor',
@@ -73,7 +73,7 @@ class ResultsAdmin(admin.ModelAdmin):
                    'overall_consequence_factor',
                    'overall_consequence_rating',
                    'risk_rating',
-                   
+
                    'corrosion_rate',
                    'acceleration_factor_for_pitting',
                    'adjusted_corrosion_rate',
@@ -84,5 +84,5 @@ class ResultsAdmin(admin.ModelAdmin):
                    'interval_before_next_required_inspection',
                    'next_inspection']
     list_per_page = 12
-                   
-                   
+
+

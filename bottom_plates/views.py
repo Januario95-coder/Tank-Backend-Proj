@@ -16,8 +16,8 @@ from .serializers import (
 class ProbabilityFactorDataView(generics.ListAPIView):
     serializer_class = ProbabilityFactorDataSerializer
     queryset = ProbabilityFactorData.objects.all()
-    
-    
+
+
 class ConsequenceFactorDataView(generics.ListAPIView):
     serializer_class = ConsequenceFactorDataSerializer
     queryset = ConsequenceFactorData.objects.all()

@@ -27,17 +27,17 @@ from selectfields.models import (
     AccelerationFactorForPitting,
     NDTMethodUsedForThicknessMeasurements,
     FrequencyOfInternalInspections,
-    TypeOfInterconnectingBottomPlateWelds,
+    IsTheConstructionSuchThatCorrosionMayBeReducedByTheChosenWeldConfiguration,
 )
 
 
 
 def extractScore(score):
     return float(score.split('=')[-1])
-  
+
 DEGREE_SIGN = u'\N{DEGREE SIGN}'
 
-class ProbabilityFactorData(models.Model):   
+class ProbabilityFactorData(models.Model):
     #Action Taken to Limit Corrosion on Bottom Plates
     # impresses_cathodic_protection = models.CharField(max_length=100,
             # choices=IMPRE_CATHODIC_PROTECTION,
@@ -79,8 +79,8 @@ class ProbabilityFactorData(models.Model):
             blank=True,
             null=True
     )
-    
-            
+
+
     #Features That Influences The Failure Mechanism of Bottom Plates
     # storage_conditions = models.CharField(max_length=100,
             # choices=STORAGE_CONDITIONS,
@@ -122,16 +122,16 @@ class ProbabilityFactorData(models.Model):
             blank=True,
             null=True
     )
-            
-    @property
-    def five_score(self):
-        value = ((extractScore(self.storage_condition.name) +
-                  extractScore(self.types_of_bottom.name) +
-                  extractScore(self.heating_coils_in_tanks.name)) / 2.5)
-        return value
-            
 
-    #Effectiveness of Drainage To Prevent Water Ingress 
+    # @property
+    # def five_score(self):
+    #     value = ((extractScore(self.storage_condition.name) +
+    #               extractScore(self.types_of_bottom.name) +
+    #               extractScore(self.heating_coils_in_tanks.name)) / 2.5)
+    #     return value
+
+
+    #Effectiveness of Drainage To Prevent Water Ingress
     #Under Bottom Plates
     # foundation_type = models.CharField(max_length=100,
             # choices=FOUNDATION_TYPE,
@@ -163,19 +163,19 @@ class ProbabilityFactorData(models.Model):
             blank=True,
             null=True
     )
-           
-           
+
+
     class Meta:
         verbose_name = 'Probability Factor Data'
         verbose_name_plural = 'Probability Factor Data'
-        
+
     def __str__(self):
         return 'ProbabilityFactorData instance'
-            
-               
 
 
-class ConsequenceFactorData(models.Model):   
+
+
+class ConsequenceFactorData(models.Model):
     # Economic Aspects
     time_to_repair = models.ForeignKey(
             to=TimeToRepair,
@@ -192,14 +192,14 @@ class ConsequenceFactorData(models.Model):
             on_delete=models.CASCADE,
             blank=True,
             null=True)
-           
-    @property
-    def ten_D_score(self):
-        value = max((extractScore(self.time_to_repair.name) +
-                     extractScore(self.cost_of_repair.name))/2,
-                     extractScore(self.probable_magnitude_of_product_loss.name))
-        return value
-           
+
+    # @property
+    # def ten_D_score(self):
+    #     value = max((extractScore(self.time_to_repair.name) +
+    #                  extractScore(self.cost_of_repair.name))/2,
+    #                  extractScore(self.probable_magnitude_of_product_loss.name))
+        # return value
+
     # Health and Safety Aspects
     likelihood_of_injury_to_personnel = models.ForeignKey(
             to=LikelihoodOfInjuryToPersonnel,
@@ -230,14 +230,14 @@ class ConsequenceFactorData(models.Model):
             # choices=CONTINUED_LOCATION_OF_TANK_FARM,
             # default='4',
             # verbose_name='12d-cont\'d: Location of tank farm')
-        
-    @property
-    def twelve_E(self):
-        value = max((extractScore(self.product_flammability_as_per_MCSP.name) +
-                     extractScore(self.product_toxicity.name) + extractScore(self.location_of_tank_farm.name))/3,
-                     extractScore(self.likelihood_of_injury_to_personnel.name))
-        return value
-            
+
+    # @property
+    # def twelve_E(self):
+    #     value = max((extractScore(self.product_flammability_as_per_MCSP.name) +
+    #                  extractScore(self.product_toxicity.name) + extractScore(self.location_of_tank_farm.name))/3,
+    #                  extractScore(self.likelihood_of_injury_to_personnel.name))
+    #     return value
+
 
     # Environmental Aspects
     environmetal_hazard_to_soil_and_water_as_the_potential_to_cause = models.ForeignKey(
@@ -250,25 +250,25 @@ class ConsequenceFactorData(models.Model):
             on_delete=models.CASCADE,
             blank=True,
             null=True)
-            
-    @property
-    def fourteen_C(self):
-        value = max(extractScore(self.environmetal_hazard_to_soil_and_water_as_the_potential_to_cause.name),
-                    extractScore(self.vapour_emission.name))
-        return value
 
-           
+    # @property
+    # def fourteen_C(self):
+    #     value = max(extractScore(self.environmetal_hazard_to_soil_and_water_as_the_potential_to_cause.name),
+    #                 extractScore(self.vapour_emission.name))
+    #     return value
+
+
     class Meta:
         verbose_name = 'Consequence Factor Data'
-        verbose_name_plural = 'Consequence Factor Data'               
-    
-    
-    
-    
-    
-class InspectionData(models.Model): 
+        verbose_name_plural = 'Consequence Factor Data'
+
+
+
+
+
+class InspectionData(models.Model):
     last_inspection = models.DateField(default=timezone.now)
-  
+
     # Corrosion Rate
     minimum_thickness_measured_during_previous_inspection = models.CharField(max_length=100,
             default='5',
@@ -289,7 +289,7 @@ class InspectionData(models.Model):
             on_delete=models.CASCADE,
             blank=True,
             null=True)
-    
+
     def djusted_corrosion_rate(self):
         value = None
         if self.twenty_2:
@@ -297,13 +297,13 @@ class InspectionData(models.Model):
         else:
             value = 0.4
         return value
-          
-    @property
-    def twenty_2(self):
-        value = ((extractScore(self.minimum_thickness_measured_during_previous_inspection) - 
-                  extractScore(self.minimum_thickness_measured_during_present_inspection)) / extractScore(self.period_of_service_between_previous_inspection_and_this_inspection))
-        return value
-            
+
+    # @property
+    # def twenty_2(self):
+    #     value = ((extractScore(self.minimum_thickness_measured_during_previous_inspection) -
+    #               extractScore(self.minimum_thickness_measured_during_present_inspection)) / extractScore(self.period_of_service_between_previous_inspection_and_this_inspection))
+    #     return value
+
     # Inspections
     NDT_method_used_for_thickness_measurements = models.ForeignKey(
             to=NDTMethodUsedForThicknessMeasurements,
@@ -315,20 +315,22 @@ class InspectionData(models.Model):
             on_delete=models.CASCADE,
             blank=True,
             null=True)
-    type_of_interconnecting_bottom_plate_welds_outside_of_annular_section = models.ForeignKey(
-            to=TypeOfInterconnectingBottomPlateWelds,
+    Is_the_Construction_such_that_Corrosion_may_be_Reduced_by_the_Chosen_Weld_Configuration = models.ForeignKey(
+            to=IsTheConstructionSuchThatCorrosionMayBeReducedByTheChosenWeldConfiguration,
             on_delete=models.CASCADE,
             blank=True,
             null=True)
 
-           
+    # are_procedures_in_place_to_prevent_water_contact = models.
+
+
     class Meta:
         verbose_name = 'Inspection Data'
-        verbose_name_plural = 'Inspection Data' 
-        
+        verbose_name_plural = 'Inspection Data'
 
 
-class Results(models.Model): 
+
+class Results(models.Model):
     # RISK ASSESSMENT
     probability_factor = models.CharField(max_length=50, default='')
     probability_rating = models.CharField(max_length=50, default='')
@@ -341,7 +343,7 @@ class Results(models.Model):
     overall_consequence_factor = models.CharField(max_length=50, default='')
     overall_consequence_rating = models.CharField(max_length=50, default='')
     risk_rating = models.CharField(max_length=50, default='')
-    
+
     # REMAINING LIFE AND INSPECTION INTERVAL ASSESSMENT
     corrosion_rate = models.CharField(max_length=50, default='')
     acceleration_factor_for_pitting = models.CharField(max_length=50, default='')
@@ -352,14 +354,14 @@ class Results(models.Model):
     ajusted_confidence_factor = models.CharField(max_length=50, default='')
     interval_before_next_required_inspection = models.CharField(max_length=50, default='')
     next_inspection = models.DateField(default=timezone.now)
-  
-            
+
+
     class Meta:
         verbose_name = 'Results'
-        verbose_name_plural = 'Results' 
-        
-        
-        
+        verbose_name_plural = 'Results'
+
+
+
 
 
 class AllModels(models.Model):
@@ -375,10 +377,9 @@ class AllModels(models.Model):
     results = models.ForeignKey(
                     to=Results,
                     on_delete=models.CASCADE)
-                    
-                    
-                    
-    
-   
-    
-    
+
+
+
+
+
+

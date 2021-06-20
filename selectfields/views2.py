@@ -24,7 +24,11 @@ from selectfields.serializers2 import (
     AccelerationFactorForPittingSerializer,
     NDTMethodUsedForThicknessMeasurementsSerializer,
     FrequencyOfInternalInspectionsSerializer,
-    TypeOfInterconnectingBottomPlateWeldsSerializer,
+
+    AreProceduresInPlaceToPreventWaterContactSerializer,
+    IsTheCorrosionRateDeterminedWithAtLeast2SourcesSerializer,
+    IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPointsSerializer,
+    WhichMethodIsUsedSerializer
 )
 
 
@@ -52,131 +56,146 @@ from .models import (
     AccelerationFactorForPitting,
     NDTMethodUsedForThicknessMeasurements,
     FrequencyOfInternalInspections,
-    TypeOfInterconnectingBottomPlateWelds,
+
+    AreProceduresInPlaceToPreventWaterContact,
+    IsTheCorrosionRateDeterminedWithAtLeast2Sources,
+    IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPoints,
+    WhichMethodIsUsed
 )
 
 
-
-class ImpressCathodicProtectionView(ModelViewSet):  
+class ImpressCathodicProtectionView(ModelViewSet):
     serializer_class = ImpressCathodicProtectionSerializer
     queryset = ImpressCathodicProtection.objects.all()
-    
 
 
-class SacrificialCathodicPropectionView(ModelViewSet):  
+
+class SacrificialCathodicPropectionView(ModelViewSet):
     serializer_class = SacrificialCathodicPropectionSerializer
     queryset = SacrificialCathodicPropection.objects.all()
-    
-    
-class BottomPlatesInternalCoatingLiningView(ModelViewSet):  
+
+
+class BottomPlatesInternalCoatingLiningView(ModelViewSet):
     serializer_class = BottomPlatesInternalCoatingLiningSerializer
     queryset = BottomPlatesInternalCoatingLining.objects.all()
-    
-    
-class BottomPlatesExternalCoatingView(ModelViewSet):  
+
+
+class BottomPlatesExternalCoatingView(ModelViewSet):
     serializer_class = BottomPlatesExternalCoatingSerializer
     queryset = BottomPlatesExternalCoating.objects.all()
-    
-    
-class StorageConditionsView(ModelViewSet):  
+
+
+class StorageConditionsView(ModelViewSet):
     serializer_class = StorageConditionsSerializer
     queryset = StorageConditions.objects.all()
-    
 
-class TypeOfBottomView(ModelViewSet):  
+
+class TypeOfBottomView(ModelViewSet):
     serializer_class = TypeOfBottomSerializer
     queryset = TypeOfBottom.objects.all()
-    
-    
-class HeatingCoilsInTankView(ModelViewSet):  
+
+
+class HeatingCoilsInTankView(ModelViewSet):
     serializer_class = HeatingCoilsInTankSerializer
     queryset = HeatingCoilsInTank.objects.all()
-    
-    
-class ProductCorrosivityView(ModelViewSet):  
+
+
+class ProductCorrosivityView(ModelViewSet):
     serializer_class = ProductCorrosivitySerializer
     queryset = ProductCorrosivity.objects.all()
-    
-    
-class FoundationTypeView(ModelViewSet):  
+
+
+class FoundationTypeView(ModelViewSet):
     serializer_class = FoundationTypeSerializer
     queryset = FoundationType.objects.all()
-    
-    
-class HeightOfFoundationView(ModelViewSet):  
+
+
+class HeightOfFoundationView(ModelViewSet):
     serializer_class = HeightOfFoundationSerializer
     queryset = HeightOfFoundation.objects.all()
-    
-    
-class EffectivenessOfDrainageView(ModelViewSet):  
+
+
+class EffectivenessOfDrainageView(ModelViewSet):
     serializer_class = EffectivenessOfDrainageSerializer
     queryset = EffectivenessOfDrainage.objects.all()
-    
 
-class TimeToRepairView(ModelViewSet):  
+
+class TimeToRepairView(ModelViewSet):
     serializer_class = TimeToRepairSerializer
     queryset = TimeToRepair.objects.all()
-    
-    
-class CostOfRepairView(ModelViewSet):  
+
+
+class CostOfRepairView(ModelViewSet):
     serializer_class = CostOfRepairSerializer
     queryset = CostOfRepair.objects.all()
-    
-    
-class ProbableMagnitudeOfProductLossView(ModelViewSet):  
+
+
+class ProbableMagnitudeOfProductLossView(ModelViewSet):
     serializer_class = ProbableMagnitudeOfProductLossSerializer
     queryset = ProbableMagnitudeOfProductLoss.objects.all()
-    
-    
-class LikelihoodOfInjuryToPersonnelView(ModelViewSet):  
+
+
+class LikelihoodOfInjuryToPersonnelView(ModelViewSet):
     serializer_class = LikelihoodOfInjuryToPersonnelSerializer
     queryset = LikelihoodOfInjuryToPersonnel.objects.all()
-    
 
 
-class ProductFlammabilityAsPerMCSPView(ModelViewSet):  
+
+class ProductFlammabilityAsPerMCSPView(ModelViewSet):
     serializer_class = ProductFlammabilityAsPerMCSPSerializer
     queryset = ProductFlammabilityAsPerMCSP.objects.all()
-    
 
-class ProductToxicityView(ModelViewSet):  
+
+class ProductToxicityView(ModelViewSet):
     serializer_class = ProductToxicitySerializer
     queryset = ProductToxicity.objects.all()
 
-    
-class LocationOfTankFarmView(ModelViewSet):  
+
+class LocationOfTankFarmView(ModelViewSet):
     serializer_class = LocationOfTankFarmSerializer
     queryset = LocationOfTankFarm.objects.all()
-    
-    
-class EnvironmetalHazardToSoilAndWaterView(ModelViewSet):  
+
+
+class EnvironmetalHazardToSoilAndWaterView(ModelViewSet):
     serializer_class = EnvironmetalHazardToSoilAndWaterSerializer
     queryset = EnvironmetalHazardToSoilAndWater.objects.all()
 
 
-class VapourEmissionView(ModelViewSet):  
+class VapourEmissionView(ModelViewSet):
     serializer_class = VapourEmissionSerializer
     queryset = VapourEmission.objects.all()
-    
-    
-class AccelerationFactorForPittingView(ModelViewSet):  
+
+
+class AccelerationFactorForPittingView(ModelViewSet):
     serializer_class = AccelerationFactorForPittingSerializer
     queryset = AccelerationFactorForPitting.objects.all()
-    
-    
-class NDTMethodUsedForThicknessMeasurementsView(ModelViewSet):  
+
+
+class NDTMethodUsedForThicknessMeasurementsView(ModelViewSet):
     serializer_class = NDTMethodUsedForThicknessMeasurementsSerializer
     queryset = NDTMethodUsedForThicknessMeasurements.objects.all()
-    
-    
-class FrequencyOfInternalInspectionsView(ModelViewSet):  
+
+
+class FrequencyOfInternalInspectionsView(ModelViewSet):
     serializer_class = FrequencyOfInternalInspectionsSerializer
     queryset = FrequencyOfInternalInspections.objects.all()
-    
-    
-class TypeOfInterconnectingBottomPlateWeldsView(ModelViewSet):  
-    serializer_class = TypeOfInterconnectingBottomPlateWeldsSerializer
-    queryset = TypeOfInterconnectingBottomPlateWelds.objects.all()
-    
-    
-    
+
+class AreProceduresInPlaceToPreventWaterContactView(ModelViewSet):
+    serializer_class = AreProceduresInPlaceToPreventWaterContactSerializer
+    queryset = AreProceduresInPlaceToPreventWaterContact.objects.all()
+
+
+class IsTheCorrosionRateDeterminedWithAtLeast2SourcesView(ModelViewSet):
+    serializer_class = IsTheCorrosionRateDeterminedWithAtLeast2SourcesSerializer
+    queryset = IsTheCorrosionRateDeterminedWithAtLeast2Sources.objects.all()
+
+
+class IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPointsView(ModelViewSet):
+    serializer_class = IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPointsSerializer
+    queryset = IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPoints.objects.all()
+
+
+class WhichMethodIsUsedView(ModelViewSet):
+    serializer_class = WhichMethodIsUsedSerializer
+    queryset = WhichMethodIsUsed.objects.all()
+

@@ -25,9 +25,12 @@ from .views2 import (
     AccelerationFactorForPittingView,
     NDTMethodUsedForThicknessMeasurementsView,
     FrequencyOfInternalInspectionsView,
-    TypeOfInterconnectingBottomPlateWeldsView,
-)
 
+    AreProceduresInPlaceToPreventWaterContactView,
+    IsTheCorrosionRateDeterminedWithAtLeast2SourcesView,
+    IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPointsView,
+    WhichMethodIsUsedView
+)
 
 
 router = DefaultRouter()
@@ -54,7 +57,11 @@ router.register('vapour-emission', VapourEmissionView, basename='VapourEmission'
 router.register('accelaration-factor', AccelerationFactorForPittingView, basename='AccelerationFactorForPitting')
 router.register('ndt-method-used', NDTMethodUsedForThicknessMeasurementsView, basename='NDTMethodUsedForThicknessMeasurements')
 router.register('freq-of-internal-insp', FrequencyOfInternalInspectionsView, basename='FrequencyOfInternalInspections')
-router.register('type-of-internecting', TypeOfInterconnectingBottomPlateWeldsView, basename='TypeOfInterconnectingBottomPlateWelds')
+
+router.register('are-procedures-in-place', AreProceduresInPlaceToPreventWaterContactView, basename='AreProceduresInPlaceToPreventWaterContact')
+router.register('is-the-corrosion-rate-determined', IsTheCorrosionRateDeterminedWithAtLeast2SourcesView, basename='IsTheCorrosionRateDeterminedWithAtLeast2Sources')
+router.register('is-the-degradation-speed-calculated', IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPointsView, basename='IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPoints')
+router.register('which-method-is-used', WhichMethodIsUsedView, basename='WhichMethodIsUsed')
 
 
 

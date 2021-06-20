@@ -14,6 +14,10 @@ class ImpressCathodicProtection(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Impressed cathodic protection'
+        verbose_name_plural = 'Impressed cathodic protection'
+
 
 
 class SacrificialCathodicPropection(models.Model):
@@ -101,7 +105,7 @@ class HeatingCoilsInTank(models.Model):
 
 
 class ProductCorrosivity(models.Model):
-    name = models.CharField(max_length=100,
+    name = models.CharField(max_length=330,
             choices=PRODUCT_CORROSIVITY,
             default='Group 1/Risk H - Score=2',
             verbose_name='6: Product Corrosivity')
@@ -116,7 +120,7 @@ class ProductCorrosivity(models.Model):
 
 
 class FoundationType(models.Model):
-    name = models.CharField(max_length=100,
+    name = models.CharField(max_length=330,
             choices=FOUNDATION_TYPE,
             default='Piled concrete raft - Score=0',
             verbose_name='7: Foundation type'
@@ -271,6 +275,20 @@ class LocationOfTankFarm(models.Model):
         verbose_name_plural = 'Location Of Tank Farm'
 
 
+class TankLocatedNearPublicFence(models.Model):
+    name = models.CharField(max_length=100,
+            choices=TANK_LOCATED_NEAR_A_PUBLIC_FENCE,
+            default='No - Score=0',
+            verbose_name='12d: Location of tank farm')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Tank Located Near Public Fence'
+        verbose_name_plural = 'Tank Located Near Public Fence'
+
+
 
 class EnvironmetalHazardToSoilAndWater(models.Model):
     name = models.CharField(max_length=100,
@@ -329,6 +347,9 @@ class NDTMethodUsedForThicknessMeasurements(models.Model):
     def __str__(self):
         return self.name
 
+    def score(self):
+        return float(self.name.split('Score=')[1].split(')')[0])
+
     class Meta:
         verbose_name = 'NDT Method Used For Thickness Measurements'
         verbose_name_plural = 'NDT Method Used For Thickness Measurements'
@@ -345,23 +366,227 @@ class FrequencyOfInternalInspections(models.Model):
     def __str__(self):
         return self.name
 
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
     class Meta:
         verbose_name = 'Frequency Of Internal Inspections'
         verbose_name_plural = 'Frequency Of Internal Inspections'
 
 
-
-class TypeOfInterconnectingBottomPlateWelds(models.Model):
+class Ndt_Method_And_Qualification_Of_Ndt_Operators_In_Place_And_Assessed(models.Model):
     name = models.CharField(max_length=100,
-            choices=TYPE_OF_INTERCONNECTING_BOTTOM_PLATE_WELDS_OUTSIDE_OF_ANNULAR_SECTION,
-            default='Butt welds - Score=0.1',
-            verbose_name='30: Type of interconnecting bottom plate welds outside of annular section'
+            choices=NDT_METHOD_AND_QUALIFICATION_OF_NDT_OPERATORS_IN_PLACE_AND_ASSESSED,
+            default='No - Score=0',
+            verbose_name='Ndt Method And Qualification Of Ndt Operators In Place And Assessed'
     )
 
     def __str__(self):
         return self.name
 
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
     class Meta:
-        verbose_name = 'Type Of Interconnecting Bottom Plate Welds'
-        verbose_name_plural = 'Type Of Interconnecting Bottom Plate Welds'
+        verbose_name = 'NDT Method And Qualification Of NDT Operators In Place And Assessed'
+        verbose_name_plural = 'NDT Method And Qualification Of Ndt Operators In Place And Assessed'
+
+
+class EvidenceAvailableOfCompletingPdca(models.Model):
+    name = models.CharField(max_length=100,
+            choices=IS_EVIDENCE_AVAILABLE_OF_COMPLETING_PDCA_CYCLE_ON_INSPECTION_ACTIVITIES,
+            default='No - Score=0',
+            verbose_name='Is Evidence Available Of Completing PDCA Cycle On Inspection Activities?'
+    )
+
+    def __str__(self):
+        return self.name
+
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
+    class Meta:
+        verbose_name = 'Is Evidence Available Of Completing PDCA Cycle On Inspection Activities'
+        verbose_name_plural = 'Is Evidence Available Of Completing PDCA Cycle On Inspection Activities'
+
+
+
+class DoesTheOrganisationHaveTheProperQualificationsToDetermineDegradationsSpeeds(models.Model):
+    name = models.CharField(max_length=100,
+            choices=DOES_THE_ORGANISATION_HAVE_THE_PROPER_QUALIFICATIONS_TO_DETERMINE_DEGRADATIONS_SPEEDS_AND_ASSESS_INSPECTION_RESULTS,
+            default='No - Score=0',
+            verbose_name='Does the Organisation Have the Proper Qualifications to Determine Degradations Speeds and Assess Inspection Results?'
+    )
+
+    def __str__(self):
+        return self.name
+
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
+    class Meta:
+        verbose_name = 'Does the Organisation Have the Proper Qualifications to Determine Degradations Speeds and Assess Inspection Results?'
+        verbose_name_plural = 'Does the Organisation Have the Proper Qualifications to Determine Degradations Speeds and Assess Inspection Results?'
+
+
+class AreResultsAlwaysDiscussedInAMultidisciplinaryRbiTeam(models.Model):
+    name = models.CharField(max_length=100,
+            choices=ARE_RESULTS_ALWAYS_DISCUSSED_IN_A_MULTIDISCIPLINARY_RBI_TEAM,
+            default='No - Score=1',
+            verbose_name='Are Results Always Discussed in a Multidisciplinary RBI Team?'
+    )
+
+    def __str__(self):
+        return self.name
+
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
+    class Meta:
+        verbose_name = 'Are Results Always Discussed in a Multidisciplinary RBI Team?'
+        verbose_name_plural = 'Are Results Always Discussed in a Multidisciplinary RBI Team?'
+
+
+class Aretrainingrequirementsforrbiteammembersconsistentlyused(models.Model):
+    name = models.CharField(max_length=100,
+            choices=ARE_TRAINING_REQUIREMENTS_FOR_RBI_TEAM_MEMBERS_CONSISTENTLY_USED,
+            default='No - Score=1',
+            verbose_name='Are Training Requirements for RBI Team Members Consistently Used?'
+    )
+
+    def __str__(self):
+        return self.name
+
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
+    class Meta:
+        verbose_name = 'Are Training Requirements for RBI Team Members Consistently Used?'
+        verbose_name_plural = 'Are Training Requirements for RBI Team Members Consistently Used?'
+
+
+
+class DoesTheItemEvaluationHaveSignificantPitting(models.Model):
+    name = models.CharField(max_length=100,
+            choices=DOES_THE_ITEM_EVALUATION_HAVE_SIGNIFICANT_PITTING,
+            default='No - Score=1',
+            verbose_name='Does the Item Evaluation Have Significant Pitting?'
+    )
+
+    def __str__(self):
+        return self.name
+
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
+    class Meta:
+        verbose_name = 'Does the Item Evaluation Have Significant Pitting?'
+        verbose_name_plural = 'Does the Item Evaluation Have Significant Pitting?'
+
+
+class CanTheDegradationMechanismBeRegardedAsLinear(models.Model):
+    name = models.CharField(max_length=100,
+            choices=CAN_THE_DEGRADATION_MECHANISM_BE_REGARDED_AS_LINEAR,
+            default='No - Score=1',
+            verbose_name='Can the Degradation Mechanism be Regarded as Linear?'
+    )
+
+    def __str__(self):
+        return self.name
+
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
+    class Meta:
+        verbose_name = 'Can the Degradation Mechanism be Regarded as Linear?'
+        verbose_name_plural = 'Can the Degradation Mechanism be Regarded as Linear?'
+
+
+
+class IsTheConstructionSuchThatCorrosionMayBeReducedByTheChosenWeldConfiguration(models.Model):
+    name = models.CharField(max_length=100,
+            choices=IS_THE_CONSTRUCTION_SUCH_THAT_CORROSION_MAY_BE_REDUCED_BY_THE_CHOSEN_WELD_CONFIGURATION,
+            default='No - Score=1',
+            verbose_name='Is the Construction such that Corrosion may be Reduced by the Chosen Weld Configuration?'
+    )
+
+    def __str__(self):
+        return self.name
+
+    def score(self):
+        return float(self.name.split('Score=')[1])
+
+    class Meta:
+        verbose_name = 'Is the Construction such that Corrosion may be Reduced by the Chosen Weld Configuration?'
+        verbose_name_plural = 'Is the Construction such that Corrosion may be Reduced by the Chosen Weld Configuration?'
+
+
+# class TypeOfInterconnectingBottomPlateWelds(models.Model):
+#     name = models.CharField(max_length=100,
+#             choices=IS_THE_CONSTRUCTION_SUCH_THAT_CORROSION_MAY_BE_REDUCED_BY_THE_CHOSEN_WELD_CONFIGURATION,
+#             default='Butt welds - Score=0.1',
+#             verbose_name='30: Type of interconnecting bottom plate welds outside of annular section'
+#     )
+
+#     def __str__(self):
+#         return self.name
+
+#     class Meta:
+#         verbose_name = 'Type Of Interconnecting Bottom Plate Welds'
+#         verbose_name_plural = 'Type Of Interconnecting Bottom Plate Welds'
+
+
+
+class AreProceduresInPlaceToPreventWaterContact(models.Model):
+    name = models.CharField(max_length=350,
+            choices=ARE_PROCEDURES_IN_PLACE_TO_PREVENT_WATER_CONTACT,
+            default='Yes - Score=1')
+            # verbose_name='Are Procedures In Place To Prevent Water Contact')
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Are Procedures In Place To Prevent Water Contact'
+        verbose_name_plural = 'Are Procedures In Place To Prevent Water Contact'
+
+class IsTheCorrosionRateDeterminedWithAtLeast2Sources(models.Model):
+    name = models.CharField(max_length=350,
+            choices=IS_THE_CORROSION_RATE_DETERMINED_WITH_AT_LEAST_2_SOURCES,
+            default='Yes - Score=1')
+            # verbose_name='Is The Corrosion Rate Determined With At Least 2 Sources')
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Is The Corrosion Rate Determined With At Least 2 Sources'
+        verbose_name_plural = 'Is The Corrosion Rate Determined With At Least 2 Sources'
+
+class IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPoints(models.Model):
+    name = models.CharField(max_length=350,
+            choices=IS_THE_DEGRADATION_SPEED_CALCULATED_BY_USING_AT_LEAST_3_MEASUREMENT_POINTS,
+            default='Yes - Score=1')
+            # verbose_name='Is The Degradation Speed Calculated By Using At Least 3 Measurement Points')
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Is The Degradation Speed Calculated By Using At Least 3 Measurement Points'
+        verbose_name_plural = 'Is The Degradation Speed Calculated By Using At Least 3 Measurement Points'
+
+class WhichMethodIsUsed(models.Model):
+    name = models.CharField(max_length=350,
+            choices=WHICH_METHOD_IS_USED,
+            default='Yes - Score=1')
+            # verbose_name='Which Method Is Used')
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Which Method Is Used'
+        verbose_name_plural = 'Which Method Is Used'
+
 

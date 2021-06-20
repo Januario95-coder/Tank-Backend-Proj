@@ -24,14 +24,21 @@ from .models import (
     AccelerationFactorForPitting,
     NDTMethodUsedForThicknessMeasurements,
     FrequencyOfInternalInspections,
-    TypeOfInterconnectingBottomPlateWelds,
+
+    AreProceduresInPlaceToPreventWaterContact,
+    IsTheCorrosionRateDeterminedWithAtLeast2Sources,
+    IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPoints,
+    WhichMethodIsUsed
 )
 
 
+def formatScore(name):
+    return name.split('- S')[0].strip()
+
 
 def formatName(name):
-    return name #.split('-')[0].strip()
-    
+    return name  # .split('-')[0].strip()
+
 
 class NameFormatting:
     def to_representation(self, instance):
@@ -41,209 +48,222 @@ class NameFormatting:
 
 
 class ImpressCathodicProtectionSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
-    
+        NameFormatting,
+        serializers.ModelSerializer):
+
     class Meta:
         model = ImpressCathodicProtection
         fields = ['id', 'name']
-        
-        
+
+
 class SacrificialCathodicPropectionSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = SacrificialCathodicPropection
         fields = ['id', 'name']
 
-        
-        
+
 class BottomPlatesInternalCoatingLiningSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = BottomPlatesInternalCoatingLining
         fields = ['id', 'name']
 
-        
-        
-        
+
 class BottomPlatesExternalCoatingSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = BottomPlatesExternalCoating
-        fields = ['id', 'name']   
-        
-        
+        fields = ['id', 'name']
+
+
 class StorageConditionsSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = StorageConditions
         fields = ['id', 'name']
 
-        
-        
+
 class TypeOfBottomSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = TypeOfBottom
         fields = ['id', 'name']
 
-        
+
 class HeatingCoilsInTankSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = HeatingCoilsInTank
         fields = ['id', 'name']
 
-        
 
 class ProductCorrosivitySerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = ProductCorrosivity
         fields = ['id', 'name']
 
-        
+
 class FoundationTypeSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = FoundationType
         fields = ['id', 'name']
-        
-        
-        
+
+
 class HeightOfFoundationSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = HeightOfFoundation
         fields = ['id', 'name']
 
-        
-        
+
 class EffectivenessOfDrainageSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = EffectivenessOfDrainage
         fields = ['id', 'name']
-        
-        
+
+
 class TimeToRepairSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = TimeToRepair
         fields = ['id', 'name']
-        
-        
-        
+
+
 class CostOfRepairSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+    # NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = CostOfRepair
         fields = ['id', 'name']
 
-        
-        
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['name'] = formatScore(instance.name)
+        return data
+
+
 class ProbableMagnitudeOfProductLossSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = ProbableMagnitudeOfProductLoss
         fields = ['id', 'name']
 
-        
+
 class LikelihoodOfInjuryToPersonnelSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = LikelihoodOfInjuryToPersonnel
         fields = ['id', 'name']
 
-        
-        
+
 class ProductFlammabilityAsPerMCSPSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = ProductFlammabilityAsPerMCSP
         fields = ['id', 'name']
-        
-        
+
+
 class ProductToxicitySerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = ProductToxicity
         fields = ['id', 'name']
-        
-        
-        
+
+
 class LocationOfTankFarmSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = LocationOfTankFarm
         fields = ['id', 'name']
 
-        
-        
+
 class EnvironmetalHazardToSoilAndWaterSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = EnvironmetalHazardToSoilAndWater
         fields = ['id', 'name']
 
-        
-        
+
 class VapourEmissionSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = VapourEmission
         fields = ['id', 'name']
-        
-        
+
+
 class AccelerationFactorForPittingSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = AccelerationFactorForPitting
         fields = ['id', 'name']
-        
-        
+
 
 class NDTMethodUsedForThicknessMeasurementsSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = NDTMethodUsedForThicknessMeasurements
         fields = ['id', 'name']
 
-        
-        
+
 class FrequencyOfInternalInspectionsSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
         model = FrequencyOfInternalInspections
         fields = ['id', 'name']
 
-        
-        
-class TypeOfInterconnectingBottomPlateWeldsSerializer(
-    NameFormatting,
-    serializers.ModelSerializer):
+
+class AreProceduresInPlaceToPreventWaterContactSerializer(
+        NameFormatting,
+        serializers.ModelSerializer):
     class Meta:
-        model = TypeOfInterconnectingBottomPlateWelds
+        model = AreProceduresInPlaceToPreventWaterContact
+        fields = ['id', 'name']
+
+
+class IsTheCorrosionRateDeterminedWithAtLeast2SourcesSerializer(
+        NameFormatting,
+        serializers.ModelSerializer):
+    class Meta:
+        model = IsTheCorrosionRateDeterminedWithAtLeast2Sources
+        fields = ['id', 'name']
+
+
+class IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPointsSerializer(
+        NameFormatting,
+        serializers.ModelSerializer):
+    class Meta:
+        model = IsTheDegradationSpeedCalculatedByUsingAtLeast3MeasurementPoints
+        fields = ['id', 'name']
+
+
+class WhichMethodIsUsedSerializer(
+        NameFormatting,
+        serializers.ModelSerializer):
+    class Meta:
+        model = WhichMethodIsUsed
         fields = ['id', 'name']

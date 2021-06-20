@@ -34,7 +34,7 @@ from selectfields.models import (
     VapourEmission,
     NDTMethodUsedForThicknessMeasurements,
     FrequencyOfInternalInspections,
-    TypeOfInterconnectingBottomPlateWelds,
+    IsTheConstructionSuchThatCorrosionMayBeReducedByTheChosenWeldConfiguration,
 )
 
 
@@ -47,19 +47,19 @@ class Project(models.Model):
     end_date = models.DateField()
     default_values = models.ForeignKey(
                         to=AllModels,
-                        on_delete=models.CASCADE, 
+                        on_delete=models.CASCADE,
                         blank=True,
                         null=True
                     )
 
     def __str__(self):
         return self.name
-        
-   
-   
-   
+
+
+
+
 @receiver(pre_save, sender=Project)
-def project_pre_save(sender, instance, 
+def project_pre_save(sender, instance,
                      *args, **kwargs):
     print('Pre-save')
     if instance.default_values is None:
@@ -74,7 +74,7 @@ def project_pre_save(sender, instance,
         foundation_types = FoundationType.objects.get(id=1)
         heights_of_foundation = HeightOfFoundation.objects.get(id=1)
         effectiveness_of_drainages = EffectivenessOfDrainage.objects.get(id=1)
-        
+
         probability_factor_data = ProbabilityFactorData.objects.create(
             impresses_cathodic_protect=impresses_cathodic_protect,
             sacrificial_cathodic_propect=sacrificial_cathodic_propect,
@@ -88,8 +88,8 @@ def project_pre_save(sender, instance,
             heights_of_foundation=heights_of_foundation,
             effectiveness_of_drainages=effectiveness_of_drainages
         )
-        
-        
+
+
         time_to_repair = TimeToRepair.objects.get(id=1)
         cost_of_repair = CostOfRepair.objects.get(id=1)
         probable_magnitude_of_product_loss = ProbableMagnitudeOfProductLoss.objects.get(id=1)
@@ -99,7 +99,7 @@ def project_pre_save(sender, instance,
         location_of_tank_farm = LocationOfTankFarm.objects.get(id=1)
         environmetal_hazard_to_soil_and_water_as_the_potential_to_cause = EnvironmetalHazardToSoilAndWater.objects.get(id=1)
         vapour_emission = VapourEmission.objects.get(id=1)
-        
+
         consequence_factor_data = ConsequenceFactorData.objects.create(
             time_to_repair=time_to_repair,
             cost_of_repair=cost_of_repair,
@@ -111,13 +111,13 @@ def project_pre_save(sender, instance,
             environmetal_hazard_to_soil_and_water_as_the_potential_to_cause=environmetal_hazard_to_soil_and_water_as_the_potential_to_cause,
             vapour_emission=vapour_emission
         )
-        
-        
+
+
         acceleration_factor_for_pitting = AccelerationFactorForPitting.objects.get(id=1)
         NDT_method_used_for_thickness_measurements = NDTMethodUsedForThicknessMeasurements.objects.get(id=1)
         frequency_of_internal_inspections_performed_during_service_life = FrequencyOfInternalInspections.objects.get(id=1)
-        type_of_interconnecting_bottom_plate_welds_outside_of_annular_section = TypeOfInterconnectingBottomPlateWelds.objects.get(id=1)
-        
+        Is_the_Construction_such_that_Corrosion_may_be_Reduced_by_the_Chosen_Weld_Configuration = IsTheConstructionSuchThatCorrosionMayBeReducedByTheChosenWeldConfiguration.objects.get(id=1)
+
         inspection_data= InspectionData.objects.create(
             acceleration_factor_for_pitting=acceleration_factor_for_pitting,
             NDT_method_used_for_thickness_measurements=NDT_method_used_for_thickness_measurements,
@@ -135,9 +135,9 @@ def project_pre_save(sender, instance,
         print('Setting default values')
     else:
         print('Default values are already set')
-    
-    
-    
+
+
+
 @receiver(post_save, sender=Project)
 def project_post_save(sender, instance,
                       created,
