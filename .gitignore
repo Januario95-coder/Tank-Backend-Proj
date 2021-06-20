@@ -57,6 +57,10 @@ pytestdebug.log
 db.sqlite3
 
 
+# None
+empty/
+
+
 # Translations
 *.mo
 *.pot
